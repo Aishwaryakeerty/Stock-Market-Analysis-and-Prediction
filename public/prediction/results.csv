@@ -1,0 +1,9 @@
+stock_name,after_days, algorithm,test_rmse,no_of_days,predicted_value
+UPS,1,lstm_time_steps,2.36,1500,111.15
+UPS,7,lstm_time_steps,3.48,300,109.46
+AAPL,1,lstm_time_steps,7.81,1500,158.62
+AAPL,1,lstm_time_steps,4.69,1200,159.67
+AAPL,1,lstm_time_steps,2.72,1200,161.44
+AAPL,7,lstm_time_steps,11.58,1500,161.95
+AAPL,7,lstm_time_steps,6.35,300,171.72
+AAPL,7,lstm_time_steps,9.03,900,164.46

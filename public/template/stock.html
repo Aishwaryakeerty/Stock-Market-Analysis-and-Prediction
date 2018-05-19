@@ -1,0 +1,40 @@
+<div ng-controller="stockController">
+	<!-- Sidebar -->
+	
+	<div class="row">
+		<nav class="navbar navbar-inverse" style="background-color: #404040;">
+
+			<div class="navbar-right" style="margin-right: 70px;">
+				<form class="form-horizontal" role="form">
+					<div class="form-group" style="margin-top:10px;">
+						<select ng-options = "stock.symbol as stock.stock for stock in stocks"class="form-control" style="margin-top: 7px;" ng-model = "stockvalue" ng-change="stockChart(stockvalue);" >
+						</select>
+						
+					</div>
+				</form>
+			</div>
+
+		</nav>
+	</div>
+	<div class="row">
+
+		<div class="col-xs-3 leftSide">
+			<div ng-include="'template/sidebar.html'"></div>
+		</div>
+		<div class="col-xs-8 col-xs-offset-1">
+			<div class="row" style="margin-top: 150px;">
+				<div id="stock"
+					style="height: 400px; width: 100%;"></div>
+			</div>
+			<div class="row" style= "margin-top: 70px;">
+				<div class="col-md-3 col-md-offset-2">
+					<button ng-click = "stockChart(stockvalue, 1)" class="btn btn-success btn-lg btn-block btn-huge">1 Day Prediction</button>
+				</div>
+				<div class="col-md-3 col-md-offset-1">
+					<button ng-click = "stockChart(stockvalue, 7)" class="btn btn-success btn-lg btn-block btn-huge">7 Day Prediction</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

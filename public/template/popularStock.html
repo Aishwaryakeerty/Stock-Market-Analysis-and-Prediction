@@ -1,0 +1,14 @@
+<table class="table table-bordered table-condensed table-hover">
+	<caption>
+		<strong> Popular Stocks</strong>
+	</caption>
+	
+	<tr ng-repeat="value in stocks">
+		<td><span class="glyphicon glyphicon-star-empty" ng-if="!value.watchlist" ng-click = "changeWatchlist(value)"></span>
+		<span class="glyphicon glyphicon-star" ng-if="value.watchlist" ng-click = "changeWatchlist(value)"></span>
+			<button type="button" class="btn btn-link">
+				<strong>{{value.symbol}} </strong>
+			</button>&nbsp;&nbsp;{{value.stock}} </td>
+	</tr>
+	
+</table>

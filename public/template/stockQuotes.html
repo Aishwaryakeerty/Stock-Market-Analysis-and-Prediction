@@ -1,0 +1,12 @@
+<table class="table table-bordered table-condensed">
+	<caption>
+		<strong> US Stock Quotes</strong>
+	</caption>
+	<tr ng-repeat="value in stocksVal">
+	
+		<td><button type="button" class="btn btn-link btn-black">
+				<strong>{{value["1. symbol"]}} </strong>
+			</button></td>
+		<td>{{ value["2. price"] }}</td>
+	</tr>
+</table>

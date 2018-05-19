@@ -1,0 +1,39 @@
+<div ng-controller="compareController">
+	<!-- Sidebar -->
+
+	<div class="row">
+		<nav class="navbar navbar-inverse" style="background-color: #404040;">
+
+			<div class="navbar-right" style="margin-right: 70px; margin-bottom: 20px;">
+				<form class="form-inline" role="form">
+					<div class="form-group" style="margin-top: 10px;">
+						<select
+							ng-options="stock.symbol as stock.stock for stock in stocks"
+							class="form-control" style="margin-top: 7px;"
+							ng-model="stockvalue1" ng-change="compareChart();">
+						</select>
+						<select
+							ng-options="stock.symbol as stock.stock for stock in stocks"
+							class="form-control" style="margin-top: 7px;"
+							ng-model="stockvalue2" ng-change="compareChart();">
+						</select>
+
+					</div>
+				</form>
+			</div>
+
+		</nav>
+	</div>
+	<div class="row">
+
+		<div class="col-xs-3 leftSide">
+			<div ng-include="'template/sidebar.html'"></div>
+		</div>
+		<div class="col-xs-8 col-xs-offset-1">
+			<div class="row" style="margin-top: 150px;">
+				<div id="compare" style="height: 400px; width: 100%;"></div>
+			</div>
+		</div>
+
+	</div>
+</div>
