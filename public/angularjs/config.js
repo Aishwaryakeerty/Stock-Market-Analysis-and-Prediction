@@ -27,7 +27,7 @@ app.config(function($routeProvider) {
 
 app.run(function($rootScope){
 	$rootScope.stocks = [{symbol:"AAPL",stock:"Apple Inc.",watchlist:true},{symbol:"BABA",stock:"Alibaba",watchlist:false}, {symbol:"GOOGL",stock:"Alphabet Inc.",watchlist:false}, {symbol:"MSFT",stock:"Microsoft Corporation",watchlist:false},{symbol:"AMZN",stock:"Amazon",watchlist:false}, {symbol:"UPS",stock:"United Parcel Service",watchlist:false}];
-	$rootScope.fetchData = false;
+	$rootScope.fetchData = true;
 })
 
 app.controller('homeController', function($scope, $http,$rootScope) {
