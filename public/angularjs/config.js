@@ -208,7 +208,7 @@ app.controller('stockController', function($scope, $http,$rootScope) {
 			avg_prediction/=arr.length;
 			console.log(avg_prediction);
 			var xVal= new Date();
-			xVal.setDate(xVal.getDate() + prediction);
+			xVal.setDate(xVal.getDate() + prediction+1);
 			stockChart.options.data[0].dataPoints.push({ 
 				x: xVal, 
 				y: parseFloat(avg_prediction),
