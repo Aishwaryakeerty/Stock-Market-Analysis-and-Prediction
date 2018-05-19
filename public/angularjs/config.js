@@ -27,7 +27,7 @@ app.config(function($routeProvider) {
 
 app.run(function($rootScope){
 	$rootScope.stocks = [{symbol:"AAPL",stock:"Apple Inc.",watchlist:true},{symbol:"BABA",stock:"Alibaba",watchlist:false}, {symbol:"GOOGL",stock:"Alphabet Inc.",watchlist:false}, {symbol:"MSFT",stock:"Microsoft Corporation",watchlist:false},{symbol:"AMZN",stock:"Amazon",watchlist:false}, {symbol:"UPS",stock:"United Parcel Service",watchlist:false}];
-	$rootScope.fetchData = true;
+	$rootScope.fetchData = false;
 })
 
 app.controller('homeController', function($scope, $http,$rootScope) {
@@ -78,17 +78,18 @@ app.controller('homeController', function($scope, $http,$rootScope) {
 		function addData(data) {
 			var xVal = "", yVal = 100, count = 0;
 			$scope.snpVal = data;
-			/*delete $scope.snpVal["Meta Data"];
-			$scope.snpVal = $scope.snpVal["Time Series (Daily)"];*/
+			delete $scope.snpVal["Meta Data"];
+			$scope.snpVal = $scope.snpVal["Time Series (Daily)"];
 			$.each($scope.snpVal, function(k, v) {
-
 				yVal = parseInt(v["4. close"]) ;
 				xVal = new Date(k.split(" ")[0]);
+				xVal.setDate(xVal.getDate() + 1);
 				snpChart.options.data[0].dataPoints.push({x: xVal,y: yVal});	
 				count++;
 				return (count !== 40);
 			});
-
+			
+			
 			snpChart.render();
 			$scope.show = true;
 		}
@@ -183,6 +184,7 @@ app.controller('stockController', function($scope, $http,$rootScope) {
 
 				yVal = parseInt(v["4. close"]) ;
 				xVal = new Date(k.split(" ")[0]);
+				xVal.setDate(xVal.getDate() + 1);
 				stockChart.options.data[0].dataPoints.push({x: xVal,y: yVal});	
 				count++;
 				return (count !== 40);
@@ -233,8 +235,10 @@ app.controller('stockController', function($scope, $http,$rootScope) {
 
 app.controller('statisticsController', function($scope, $http,$rootScope) {
 	$scope.stockvalue = $rootScope.stocks[0].symbol;
-	$scope.stockChart = function (symbol, prediction) {
+	$scope.statisticsChart = function (symbol, prediction) {
 		var dataPoints = [];
+		symbol = $scope.stockvalue;
+		console.log(symbol);
 		if(!symbol)
 			symbol = $rootScope.stocks[0].symbol;
 		var stockChart = new CanvasJS.Chart("stock", {
@@ -293,6 +297,7 @@ app.controller('statisticsController', function($scope, $http,$rootScope) {
 			
 			$.each($scope.stockVal, function(k, v) {
 				xVal = new Date(k.split(" ")[0]);
+				xVal.setDate(xVal.getDate() + 1);
 				dataPoints.push({
 					x: xVal,
 					y: [
@@ -314,7 +319,7 @@ app.controller('statisticsController', function($scope, $http,$rootScope) {
 			$.getJSON('/json/'+symbol+'.json',addData);
 	}
 
-	$scope.stockChart();
+	$scope.statisticsChart();
 });
 
 //compare controller 
@@ -390,7 +395,7 @@ app.controller('compareController', function($scope, $http,$rootScope) {
 
 				yVal = parseInt(v["4. close"]) ;
 				xVal = new Date(k.split(" ")[0]);
-				console.log(xVal + " - " + yVal);
+				xVal.setDate(xVal.getDate() + 1);
 				
 				compareChart.options.data[0].dataPoints.push({x: xVal,y: yVal});	
 				count++;
@@ -419,7 +424,7 @@ app.controller('compareController', function($scope, $http,$rootScope) {
 			$.each($scope.stockVal, function(k, v) {
 				yVal = parseInt(v["4. close"]) ;
 				xVal = new Date(k.split(" ")[0]);
-				console.log(xVal + " - " + yVal);
+				xVal.setDate(xVal.getDate() + 1);
 				compareChart.options.data[1].dataPoints.push({x: xVal,y: yVal});	
 				count++;
 				return (count !== 40);
